@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
+
 const fields = [
   {
     id: "name",
@@ -50,7 +51,9 @@ function App() {
     port: "",
     useSSL: useSSL,
   });
+
   const isAdvanced = accountType === "Advanced";
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -88,40 +91,37 @@ function App() {
           <MenuItem value={"Advanced"}>Advanced</MenuItem>
           <MenuItem value={"Manual"}>Manual</MenuItem>
         </Select>
-        {fields.slice(0, 3).map((x) => {
-          return (
-            <Box sx={{ flexDirection: "row" }}>
+        {fields.slice(0, 3).map((x) => (
+          <Box key={x.id} sx={{ flexDirection: "row" }}>
+            <div>{x.name + ":"}</div>
+            <TextField
+              name={x.id}
+              value={formData[x.id]}
+              onChange={handleChange}
+              variant="outlined"
+              required
+              margin="normal"
+              type={x.type}
+              placeholder={x.placeholder}
+            />
+          </Box>
+        ))}
+        {isAdvanced &&
+          fields.slice(3, 5).map((x) => (
+            <Box key={x.id} sx={{ flexDirection: "row" }}>
               <div>{x.name + ":"}</div>
               <TextField
+                name={x.id}
                 value={formData[x.id]}
                 onChange={handleChange}
                 variant="outlined"
                 required
                 margin="normal"
-                type={x.type}
                 placeholder={x.placeholder}
               />
             </Box>
-          );
-        })}
-        {isAdvanced
-          ? fields.slice(3, 5).map((x) => {
-              return (
-                <Box sx={{ flexDirection: "row" }}>
-                  <div>{x.name + ":"}</div>
-                  <TextField
-                    value={formData[x.id]}
-                    onChange={handleChange}
-                    variant="outlined"
-                    required
-                    margin="normal"
-                    placeholder={x.placeholder}
-                  />
-                </Box>
-              );
-            })
-          : null}
-        {isAdvanced ? (
+          ))}
+        {isAdvanced && (
           <>
             <Checkbox
               checked={useSSL}
@@ -130,7 +130,7 @@ function App() {
             />{" "}
             <div> Use SSL</div>
           </>
-        ) : null}
+        )}
         <Button
           type="submit"
           variant="contained"
