@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -54,26 +54,25 @@ function App() {
 
   const isAdvanced = accountType === "Advanced";
 
+  useEffect(() => {
+    // Update formData when accountType / useSSL are changed
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      accountType: accountType,
+      useSSL: useSSL,
+    }));
+  }, [accountType, useSSL]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: value,
-    });
-  };
-
-  const handleChangeAccountType = (event) => {
-    setAccountType(event.target.value);
-  };
-
-  const handleChangeUseSSL = (event) => {
-    setUseSSL(event.target.checked);
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // perform form submission logic here, e.g., send data to a server
-    // For now, let's just log the form data to the console
     console.log(formData);
   };
 
@@ -85,7 +84,7 @@ function App() {
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
           value={accountType}
-          onChange={handleChangeAccountType}
+          onChange={(e) => setAccountType(e.target.value)}
           autoWidth
         >
           <MenuItem value={"Advanced"}>Advanced</MenuItem>
@@ -125,7 +124,7 @@ function App() {
           <>
             <Checkbox
               checked={useSSL}
-              onChange={handleChangeUseSSL}
+              onChange={(e) => setUseSSL(e.target.checked)}
               inputProps={{ "aria-label": "controlled" }}
             />{" "}
             <div> Use SSL</div>
