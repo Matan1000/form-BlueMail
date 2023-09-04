@@ -10,32 +10,32 @@ const fields = [
     id: "name",
     name: "User Name",
     placeholder: "name@example.com",
+    type: "text"
   },
   {
     id: "password",
     name: "Password",
     placeholder: "Required",
+    type: "password"
   },
   {
     id: "serverAdress",
     name: "Server Address",
     placeholder: "example.com",
+    type: "email"
   },
   {
     id: "serverPath",
     name: "Server Path",
     placeholder: "/calendars/user/",
+    type: "url"
   },
   {
     id: "port",
     name: "Port",
     placeholder: "",
-  },
-  {
-    id: "useSSL",
-    name: "Use SSL",
-    placeholder: "true",
-  },
+    type: "number"
+  }
 ];
 
 function App() {
@@ -98,6 +98,7 @@ function App() {
                 variant="outlined"
                 required
                 margin="normal"
+                type={x.type}
                 placeholder={x.placeholder}
               />
             </Box>
