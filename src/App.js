@@ -52,15 +52,26 @@ function App() {
     useSSL: useSSL,
   });
 
-  const isAdvanced = accountType === "Advanced";
-
+ const isAdvanced = accountType === "Advanced";
+ 
   useEffect(() => {
     // Update formData when accountType / useSSL are changed
+    if (accountType === "Advanced")
+    {
     setFormData((prevFormData) => ({
       ...prevFormData,
       accountType: accountType,
       useSSL: useSSL,
-    }));
+    }))}
+    else
+    {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        accountType: accountType,
+        serverPath: undefined,
+        port: undefined,
+        useSSL: undefined,
+      }))}
   }, [accountType, useSSL]);
 
   const handleChange = (e) => {
