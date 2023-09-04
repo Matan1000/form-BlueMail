@@ -88,7 +88,7 @@ function App() {
           <MenuItem value={"Advanced"}>Advanced</MenuItem>
           <MenuItem value={"Manual"}>Manual</MenuItem>
         </Select>
-        {fields.slice(0, 4).map((x) => {
+        {fields.slice(0, 3).map((x) => {
           return (
             <Box sx={{ flexDirection: "row" }}>
               <div>{x.name + ":"}</div>
@@ -105,7 +105,7 @@ function App() {
           );
         })}
         {isAdvanced
-          ? fields.slice(4, 5).map((x) => {
+          ? fields.slice(3, 5).map((x) => {
               return (
                 <Box sx={{ flexDirection: "row" }}>
                   <div>{x.name + ":"}</div>
