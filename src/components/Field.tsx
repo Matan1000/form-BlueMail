@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 
-export default function Field ({ fieldName, fieldId, children }) {
+export default function Field ({ fieldName, fieldId, children }: { fieldName: string, fieldId: string, children: React.ReactNode }) {
     return (
       <Box
         key={fieldId}

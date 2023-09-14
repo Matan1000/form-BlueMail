@@ -6,7 +6,7 @@
       "name": "User Name",
       "placeholder": "name@example.com",
       "isRequired": true,
-      "error": "user name should be an email"
+      "error": "User Name should be an email"
     },
     {
       "id": "password",
@@ -14,21 +14,21 @@
       "placeholder": "Required",
       "isRequired": true,
       "error":
-        "password must contain at least eight characters, at least one number and both lower and uppercase letters and special characters",
+        "Password must contain at least eight characters, at least one number and both lower and uppercase letters and special characters",
       "type": "password"
     },
     {
       "id": "serverAdress",
       "name": "Server Address",
       "placeholder": "example.com",
-      "error": "server adress should be a URL"
+      "error": "Server adress should be a URL"
     },
     {
       "id": "serverPath",
       "name": "Server Path",
       "placeholder": "/calendars/user/",
       "error":
-        "please provide a valid path (contains alphanumeric characters and '/')"
+        "Please provide a valid path (contains alphanumeric characters and '/')"
     },
     {
       "id": "port",
